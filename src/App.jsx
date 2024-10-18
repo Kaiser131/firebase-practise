@@ -4,7 +4,9 @@ function App() {
 
   return (
     <>
-      <h1>lorem</h1>
+      <div>
+        <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi enim eligendi, assumenda incidunt blanditiis, sapiente ab amet neque eum quam iusto ipsa non voluptates eius doloremque odit, est pariatur saepe!</h1>
+      </div>
     </>
   );
 }
