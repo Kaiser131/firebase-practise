@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 
 const Main = () => {
     return (
-        <div>
+        <div className="w-[1280px] mx-auto text-center">
             <Header></Header>
             <Outlet></Outlet>
         </div>

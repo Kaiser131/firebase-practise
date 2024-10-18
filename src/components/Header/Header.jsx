@@ -2,9 +2,9 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
     return (
-        <div>
-            <NavLink to='/'>Home</NavLink>
-            <NavLink to='/login'>Login</NavLink>
+        <div className="gap-10">
+            <NavLink className="btn btn-link" to='/'>Home</NavLink>
+            <NavLink className="btn btn-link" to='/login'>Login</NavLink>
         </div>
     );
 };
