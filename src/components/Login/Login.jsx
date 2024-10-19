@@ -1,18 +1,23 @@
-import { getAuth, signInWithPopup, signOut } from "firebase/auth";
+import { getAuth, GithubAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import app from "../../firebase.init";
 import { GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
 
 const Login = () => {
     const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
+    // googleData
     const [data, setData] = useState([]);
-    // const [user,setUser]=useState();
 
+    const [git, setGitUser] = useState([]);
+
+
+    // google
     const handleGoogleSignIn = () => {
 
-        signInWithPopup(auth, provider)
+        signInWithPopup(auth, googleProvider)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
@@ -23,6 +28,23 @@ const Login = () => {
 
             });
     };
+
+
+    // github
+    const handleGithubSignIn = () => {
+
+        signInWithPopup(auth, githubProvider)
+            .then(result => {
+                const logg = result.user;
+                setGitUser(logg);
+                console.log(logg);
+            })
+            .catch(error => {
+                console.log('error', error.message);
+            });
+    };
+
+
 
     const handleSignOut = () => {
 
@@ -38,19 +60,31 @@ const Login = () => {
     };
 
 
+
+
     return (
         <div>
 
             {
-                data ?
+                data || git ?
                     <button className="btn" onClick={handleSignOut}>SignOut</button> :
-                    <button className="btn" onClick={handleGoogleSignIn}>Login</button>
+                    <>
+                        <button className="btn" onClick={handleGoogleSignIn}>Google</button>
+                        <button className="btn" onClick={handleGithubSignIn}>Github</button>
+                    </>
             }
 
             <div>
                 {data && <div>
                     <h1>Name: {data.displayName} </h1>
                     <img src={data.photoURL} alt="" />
+                </div>}
+            </div>
+
+            <div>
+                {git && <div>
+                    <h1>Name: for github </h1>
+
                 </div>}
             </div>
 
